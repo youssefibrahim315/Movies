@@ -1,0 +1,3 @@
+<app-nav-bar></app-nav-bar>
+<app-action-btn (reloadData)="getAllMovies($event)" [categories]="categories"></app-action-btn>
+<app-movie-list [moviesList]="moviesList" (reloadData)="getAllMovies($event)" [categories]="categories"></app-movie-list>

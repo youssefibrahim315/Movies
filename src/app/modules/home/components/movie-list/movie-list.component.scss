@@ -1,0 +1,30 @@
+.card {
+   a , i{
+        cursor: pointer;
+    }
+    border-radius: 20px;
+    img {
+        min-height: 250px;
+        max-height: 250px;
+        border-radius: 20px;
+    }
+    .card-body {
+        .movie-name {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .movie-description {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            word-break: break-all;
+            text-justify: distribute-all-lines;
+            height: 60px;
+        }
+        .movie-link {
+
+        }
+    }
+}

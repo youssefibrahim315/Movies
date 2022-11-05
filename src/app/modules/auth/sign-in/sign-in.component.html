@@ -1,0 +1,44 @@
+<div class="row w-100 auth-login-row">
+    <div class="col-xs-12 col-sm-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+            <div class="h-100">
+                <div class="h-100 d-flex flex-column justify-content-center">
+                    <h1 class="text-center">Sign in</h1>
+                    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" focusInvalidInput>
+                        <!-- email address -->
+                        <div class="form-group text-left">
+                            <label for="email-address">Email</label>
+                            <input formControlName="email" name="email" required email type="email" class="form-control"
+                                id="email-address" aria-describedby="emailHelp">
+                            <div class="error"
+                                *ngIf="(form?.['email']?.touched && !form?.['email']?.valid) || (!form?.['email']?.valid)">
+                                <!-- <span *ngIf="form?.['email'].errors?.required">Email is required</span>
+                                <span *ngIf="form?.['email'].errors?.email">Email is not valid</span> -->
+                            </div>
+                        </div>
+                        <!-- password -->
+                        <div class="form-group text-left">
+                            <label for="password">Password</label>
+                            <input formControlName="password" required name="password" type="password"
+                                class="form-control" id="password">
+                            <div class="error"
+                                *ngIf="(form?.['password']?.touched && !form?.['password']?.valid) || (!form?.['password']?.valid)">
+                                <!-- <span *ngIf="form?.['password']?.errors?.required">Password is required</span> -->
+                            </div>
+                        </div>
+                        <!-- Remember me -->
+                        <div class="form-check p-0 custom-checkbox">
+                            <label class="remember-me-check-label opacity-70 ps-2" for="remember-me">
+                                <input formControlName="rememberMe" class="remember-me-check-input" type="checkbox"
+                                    name="rememberMe" id="remember-me">
+                                <span class="remember-me">Remember me</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="w-100 btn btn-primary">Login</button>
+                       <a routerLink="/register"> <span class="d-flex justify-content-end mt-4 text-primary">Register</span> </a>
+
+                    </form>
+                </div>
+            </div>
+    </div>
+</div>
+<app-toast *ngIf="isSubmit && loginForm.valid" [type]="message" [text]="message"></app-toast>

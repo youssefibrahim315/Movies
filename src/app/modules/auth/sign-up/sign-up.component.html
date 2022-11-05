@@ -1,0 +1,46 @@
+<div class="row w-100 auth-login-row">
+    <div class="col-xs-12 col-sm-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+            <div class="h-100">
+                <div class="h-100 d-flex flex-column justify-content-center">
+                    <h1 class="text-center">Sign Up</h1>
+                    <form [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)" focusInvalidInput>
+                        <div class="form-group text-left">
+                            <label for="email-address">Name</label>
+                            <input formControlName="name" name="name" required  type="text" class="form-control"
+                                id="name" aria-describedby="name">
+                            <div class="error"
+                                *ngIf="(form?.['name']?.touched && !form?.['name']?.valid) || (!form?.['name']?.valid)">
+                                <!-- <span *ngIf="form?.['email'].errors?.required">Email is required</span>
+                                <span *ngIf="form?.['email'].errors?.email">Email is not valid</span> -->
+                            </div>
+                        </div>
+                        <!-- email address -->
+                        <div class="form-group text-left">
+                            <label for="email-address">Email</label>
+                            <input formControlName="email" name="email" required  type="email" class="form-control"
+                                id="email-address" aria-describedby="emailHelp">
+                            <div class="error"
+                                *ngIf="(form?.['email']?.touched && !form?.['email']?.valid) || (!form?.['email']?.valid)">
+                                <!-- <span *ngIf="form?.['email'].errors?.required">Email is required</span>
+                                <span *ngIf="form?.['email'].errors?.email">Email is not valid</span> -->
+                            </div>
+                        </div>
+                        <!-- password -->
+                        <div class="form-group text-left">
+                            <label for="password">Password</label>
+                            <input formControlName="password" required name="password" type="password"
+                                class="form-control" id="password">
+                            <div class="error"
+                                *ngIf="(form?.['password']?.touched && !form?.['password']?.valid) || (!form?.['password']?.valid)">
+                                <!-- <span *ngIf="form?.['password']?.errors?.required">Password is required</span> -->
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-100 btn btn-primary mt-3">Register</button>
+                        <a routerLink="/login"> <span class="d-flex justify-content-end mt-4 text-primary">Login</span> </a>
+                    </form>
+                </div>
+            </div>
+    </div>
+</div>
+<app-toast *ngIf="isSubmit && registerForm.valid" [type]="message" [text]="message"></app-toast>

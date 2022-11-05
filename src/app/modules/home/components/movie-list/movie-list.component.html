@@ -1,0 +1,101 @@
+<div class="row w-100 auth-login-row">
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt-3" *ngFor="let movie of moviesList">
+    <div class="card" style="width: 18rem;">
+      <div class="dropdown">
+        <i class="text-danger position-absolute dropdown-toggle  m-3" aria-hidden="true" data-bs-toggle="dropdown"
+          aria-expanded="false"></i>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#editMovie" (click)="setValueToForm(movie)">Edit</a></li>
+          <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deleteMovie" (click)="setValueToForm(movie)">Delete</a></li>
+        </ul>
+      </div>
+      <img [src]="movie.image" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title movie-name">{{movie.name}}</h5>
+        <p class="card-text movie-description">{{movie.description}}
+        </p>
+        <a href="#" class="btn btn-primary w-100 movie-link">More...</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- fa fa-ellipsis-v  -->
+
+<!--editMovie Modal -->
+<div class="modal fade" id="editMovie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form [formGroup]="movieForm" (ngSubmit)="editMovie(movieForm.value,currentMovie)" focusInvalidInput>
+        <div class="modal-body">
+
+          <div class="form-group text-left">
+            <label for="name">name</label>
+            <input formControlName="name" name="name" type="name" class="form-control" id="name"
+              aria-describedby="name">
+            <div class="error" *ngIf="(form?.['name']?.touched && !form?.['name']?.valid) || (!form?.['name']?.valid)">
+              <!-- <span *ngIf="form?.['name'].errors?.required">Email is required</span>
+                    <span *ngIf="form?.['name'].errors?.name">Email is not valid</span> -->
+            </div>
+          </div>
+          <div class="form-group text-left">
+            <label for="description">description</label>
+            <input formControlName="description" name="description" type="description" class="form-control"
+              id="description" aria-describedby="description">
+            <div class="error"
+              *ngIf="(form?.['description']?.touched && !form?.['description']?.valid) || (!form?.['description']?.valid)">
+              <!-- <span *ngIf="form?.['description'].errors?.required">Email is required</span>
+                  <span *ngIf="form?.['description'].errors?.description">Email is not valid</span> -->
+            </div>
+          </div>
+          <div class="form-group text-left">
+            <label for="image">image</label>
+            <input formControlName="image" name="image" type="file" class="form-control" id="image"
+              (change)="onFileChange($event)" aria-describedby="image">
+            <div class="error"
+              *ngIf="(form?.['image']?.touched && !form?.['image']?.valid) || (!form?.['image']?.valid)">
+              <!-- <span *ngIf="form?.['image'].errors?.required">Email is required</span>
+                <span *ngIf="form?.['image'].errors?.image">Email is not valid</span> -->
+            </div>
+          </div>
+          <div class="form-group text-left">
+            <label for="category_id">category</label>
+            <select class="form-select" formControlName="category_id" aria-placeholder="category"
+              aria-label="Default select example">
+              <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
+            </select>
+            <div class="error"
+              *ngIf="(form?.['category_id']?.touched && !form?.['category_id']?.valid) || (!form?.['category_id']?.valid)">
+              <!-- <span *ngIf="form?.['category_id'].errors?.required">Email is required</span>
+              <span *ngIf="form?.['category_id'].errors?.category_id">Email is not valid</span> -->
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--DeleteMovie Modal -->
+<div class="modal fade" id="deleteMovie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Are You Sure !</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button (click)="deleteMovie(currentMovie)" class="btn btn-primary" data-bs-dismiss="modal">Delete</button>
+        </div>
+    </div>
+  </div>
+</div>
