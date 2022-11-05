@@ -1,6 +1,7 @@
 # Movies
 Angular FrontEnd Project
-#LocalStorage
+
+# LocalStorage
 local storage is encrypted
 # Movies
 
