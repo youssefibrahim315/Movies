@@ -45,9 +45,10 @@ export class SignInComponent implements OnInit {
         this.AuthService.login(user).subscribe(
           (res: any) => {
             if (res.authorisation.token) {
+              this.router.navigate(['./home']);
               if (user.rememberMe == true) {
                 this.ls.set("remeberMe", JSON.stringify(user));
-                this.router.navigate(['./home']);
+                
               } else {
                 this.ls.remove("remeberMe");
               }
